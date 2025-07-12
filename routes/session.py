@@ -1,9 +1,17 @@
 from fastapi import APIRouter, Query
-from services.session_data import get_drivers_in_session , get_session_summary, compare_laps_telemetry
+import fastf1
+from services.session_data import (
+    get_drivers_in_session,
+    get_event_names_for_year,
+    get_next_race,
+    get_session_summary,
+    compare_laps_telemetry,
+    get_driver_lap_times
+)
 
 session_router = APIRouter()
 
-@session_router.get("/drivers-in-session")
+@session_router.get("/session/drivers")
 async def drivers_in_session(
     year: int = Query(...),
     gp: str = Query(...),
@@ -11,7 +19,7 @@ async def drivers_in_session(
 ):
     return get_drivers_in_session(year, gp, session_type)
 
-@session_router.get("/session-summary")
+@session_router.get("/session/summary")
 async def session_summary(
     year: int = Query(...),
     gp: str = Query(...),
@@ -29,3 +37,13 @@ async def compare_laps(
     session_type: str = Query("R")
 ):
     return compare_laps_telemetry(year, gp, session_type, driver1, driver2, lap)
+
+@session_router.get("/events")
+def list_events_for_year(
+    year: int = Query(..., description="F1 season year to list events for")
+):
+    return get_event_names_for_year(year)
+
+@session_router.get("/next-race")
+def next_race(year: int = Query(...)):
+    return get_next_race(year)
