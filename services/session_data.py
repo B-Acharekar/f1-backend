@@ -139,8 +139,11 @@ def get_next_race(year: int):
             "event": next_event['EventName'],
             "location": next_event['Location'],
             "country": next_event['Country'],
-            "date": next_event['Session1Date'].isoformat()
+            "session_type": "R",  # You can adjust this dynamically if needed
+            "session_date": next_event['Session1Date'].isoformat()
         }
+
     except Exception as e:
         print(f"[NEXT RACE ERROR] {e}")
         return {"error": str(e)}
+        

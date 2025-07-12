@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Query
 import fastf1
+from services.news_data import get_f1_stories
 from services.session_data import (
     get_drivers_in_session,
     get_event_names_for_year,
@@ -47,3 +48,4 @@ def list_events_for_year(
 @session_router.get("/next-race")
 def next_race(year: int = Query(...)):
     return get_next_race(year)
+
