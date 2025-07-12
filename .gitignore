@@ -1,0 +1,28 @@
+# .gitignore
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches
+.cache/
+.cache/*
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# FastF1 cache folder
+cache/
+
+# VS Code settings
+.vscode/
+
+# OS/system files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
