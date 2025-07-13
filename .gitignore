@@ -14,6 +14,8 @@ venv/
 env/
 ENV/
 
+.env 
+
 # FastF1 cache folder
 cache/
 
